@@ -231,6 +231,7 @@ auc_calculate_withstage <- function(sce,pretrained_model,query_species,highlight
   auc_list=list()
   if (!is.list(sce)) {
     for (i in names(pretrained_model)) {
+      if (dim(pretrained_model[[i]])[2]==1){next}
       auc_list[[i]] = MetaNeighborUS(
         trained_model = pretrained_model[[i]], dat = sce,
         study_id = sce$study_id, cell_type = sce$cell_type,

@@ -8,15 +8,14 @@ dscBLAST: developing single cell Basic Local Alignment Search Tool
 ![](Figure/workflow.jpg)
 
 ## **Install**
-
+download source code in [dscBLAST_1.0.0]: https://github.com/Fuyt27/dscBLAST/archive/refs/tags/1.0.0.tar.gz
 ```R
-#download source code in Release  dscBLAST_1.0.0
 install.package('dscBLAST_1.0.0.tar.gz')
 ```
 
 ## **Tutorial**
 
-For demonstration purpose, we took the dataset ectoderm.rda[`example.zip` in Release dscBLAST_1.0.0] as example.
+For demonstration purpose, we took the dataset ectoderm.rds as example.
 
 #### Package loading
 
@@ -50,6 +49,7 @@ library(stringr)
 ```R
 library(dscBLAST)
 #input data loading
+system('wget https://github.com/Fuyt27/dscBLAST/releases/download/1.0.0/example.zip')
 seob<-readRDS('./ectoderm.rds')
 count<-seob@assays$RNA@counts #input gene expression matrix
 meta<-seob@meta.data #input metadata(set columname:'cell_type') 
@@ -115,6 +115,7 @@ plotMarkers(sce,species = 'Hs',features = c('MLANA','TYRP1')) #Melanocyte marker
 ```R
 #run dscBLAST with stage info
 ##make sure you have downloaded  `ref.zip` in Release dscBLAST_1.0.0,and save it in your own local directory
+system('wget https://github.com/Fuyt27/dscBLAST/releases/download/1.0.0/ref.zip')
 auc2 <- RUN_dscBLAST_stage(sce,auc,query_species = 'Hs',ref_dir = 'you_local_dir')
 
 #visualization

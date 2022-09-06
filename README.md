@@ -49,7 +49,7 @@ library(stringr)
   - default: SCT transform
   - if a normalized matrix is offered, set  `mtx.type`='normalized' [default: 'raw']
 - create dscBLAST object
-
+![](Figure/workflow.jpg)
 ```R
 library(dscBLAST)
 #input data loading

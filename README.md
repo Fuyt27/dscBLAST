@@ -8,7 +8,7 @@ dscBLAST: developing single cell Basic Local Alignment Search Tool
 ![](Figure/workflow.jpg)
 
 ## **Install**
-download [dscBLAST_1.0.0]: https://github.com/Fuyt27/dscBLAST/archive/refs/tags/1.0.0.tar.gz	"dscBLAST"
+download **[dscBLAST](https://github.com/Fuyt27/dscBLAST/archive/refs/tags/1.0.0.tar.gz)** 
 
 ```R
 install.package('dscBLAST_1.0.0.tar.gz')

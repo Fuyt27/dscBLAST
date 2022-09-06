@@ -11,7 +11,7 @@ dscBLAST: developing single cell Basic Local Alignment Search Tool
 download **[dscBLAST](https://github.com/Fuyt27/dscBLAST/archive/refs/tags/1.0.1.tar.gz)** 
 
 ```R
-install.package('dscBLAST_1.0.1.tar.gz')
+install.package('dscBLAST_1.0.1.tar.gz',repos=NULL,type='source')
 ```
 
 ## **Tutorial**

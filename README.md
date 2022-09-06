@@ -89,7 +89,7 @@ Sanky_plot(auc)
 #Network plot
 Network_plot(auc)
 
-#Heatmap_plot
+#Heatmap plot
 Heatmap_plot(auc)
 
 #if you want to show highlight cell types only,please set `highlight=T`

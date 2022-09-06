@@ -15,7 +15,7 @@ install.package('dscBLAST.tar.gz')
 
 ## **Tutorial**
 
-For demonstration purpose, we took the dataset ectoderm.rda as example.
+For demonstration purpose, we took the dataset ectoderm.rda[`example.zip`] as example.
 
 #### Package loading
 
@@ -49,7 +49,7 @@ library(stringr)
 ```R
 library(dscBLAST)
 #input data loading
-load('./ectoderm.rda')
+seob<-readRDS('./ectoderm.rds')
 count<-seob@assays$RNA@counts #input gene expression matrix
 meta<-seob@meta.data #input metadata(set columname:'cell_type') 
 
@@ -113,7 +113,7 @@ plotMarkers(sce,species = 'Hs',features = c('MLANA','TYRP1')) #Melanocyte marker
 
 ```R
 #run dscBLAST with stage info
-##make sure you have downloaded data in ref/,and save it in your own local directory
+##make sure you have downloaded `ref.zip`,and save it in your own local directory
 auc2 <- RUN_dscBLAST_stage(sce,auc,query_species = 'Hs',ref_dir = 'you_local_dir')
 
 #visualization

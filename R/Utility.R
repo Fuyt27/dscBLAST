@@ -258,6 +258,7 @@ auc_calculate_withstage <- function(sce,pretrained_model,query_species,highlight
   }
   else{
     for (i in names(pretrained_model)) {
+      if (dim(pretrained_model[[i]])[2]==1){next}
       use_species=ifelse(substrRight(i,1) == "H", 'Hs', 'Mm')
       if (use_species==query_species) {
         auc_list[[i]] = MetaNeighborUS(

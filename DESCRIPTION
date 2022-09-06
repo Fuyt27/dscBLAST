@@ -1,0 +1,21 @@
+Package: dscBLAST
+Title: Single-cell annotation and stage definition
+Version: 0.0.0.9000
+Authors@R: 
+    person("Yuting", "Fu", , "3170100647@zju.edu.cn", role = c("aut", "cre"),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: Single-cell annotation and stage definition-202206
+License: GPL-3
+Encoding: UTF-8
+Language: es
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.1
+Imports: dplyr, ggplot2, igraph, MetaNeighbor, networkD3, pheatmap,
+        RColorBrewer, reshape2, Seurat, SeuratObject,
+        SingleCellExperiment, stringr, webshot
+Depends: R (>= 2.10)
+LazyData: true
+NeedsCompilation: no
+Packaged: 2022-09-05 08:06:27 UTC; ggj
+Author: Yuting Fu [aut, cre] (YOUR-ORCID-ID)
+Maintainer: Yuting Fu <3170100647@zju.edu.cn>

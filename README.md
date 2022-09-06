@@ -21,7 +21,7 @@ for demonstration purpose, we took the dataset **[ectoderm](https://github.com/F
 #### Package loading
 
 ```R
-#make sure the following packages is in your R-library
+#make sure the following packages are in your R-library
 library(MetaNeighbor)
 library(Seurat)
 library(SeuratObject)

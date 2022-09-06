@@ -15,11 +15,11 @@ getMarkers(species, reference, ref_celltype, ref_dataset, marker_top_n)
 
 \item{ref_dataset}{reference dataset}
 
-\item{marker_top_n}{top n markers}
+\item{marker_top_n}{topN markers}
 }
 \value{
-marker.final a list of markers
+a list of markers
 }
 \description{
-getMarkers
+get markers from certain dataset and certain cell type
 }

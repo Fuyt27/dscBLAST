@@ -2,7 +2,7 @@
 % Please edit documentation in R/Plot.R
 \name{plotMarkers}
 \alias{plotMarkers}
-\title{Plot markers}
+\title{PlotMarkers}
 \usage{
 plotMarkers(sce, species, features)
 }
@@ -14,5 +14,5 @@ plotMarkers(sce, species, features)
 \item{features}{genes offered for visualization}
 }
 \description{
-Plot markers
+plot markers in a violin plot
 }

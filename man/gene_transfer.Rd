@@ -11,7 +11,7 @@ A data frame with 2 variables
 gene_transfer
 }
 \description{
-gene transfer data
+The corresponding of mouse gene and human gene
 }
 \concept{data}
 \keyword{datasets}

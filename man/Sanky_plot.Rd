@@ -2,7 +2,7 @@
 % Please edit documentation in R/Plot.R
 \name{Sanky_plot}
 \alias{Sanky_plot}
-\title{Sankyplot}
+\title{Sanky_plot}
 \usage{
 Sanky_plot(
   auc,
@@ -10,27 +10,21 @@ Sanky_plot(
   color = c("#ffcc99", "#66cccc"),
   use_shortname = T,
   save = T,
-  cutoff = 0.8,
-  highlight = F
+  cutoff = 0.8
 )
 }
 \arguments{
 \item{auc}{correlation bewtween query and ref celltypes(results from RUN_dscBLAST)}
 
-\item{top_n}{top n correlated cell_type
-default: 3}
+\item{top_n}{top n correlated cell_type[default: 3]}
 
-\item{color}{vectors of colors
-default: c("#ffcc99","#66cccc")}
+\item{color}{vectors of colors[default: c("#ffcc99","#66cccc")]}
 
 \item{use_shortname}{default: T}
 
 \item{save}{default: T}
 }
-\value{
-p
-a sankey plot
-}
+
 \description{
-Sankyplot
+Sanky plot
 }

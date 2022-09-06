@@ -2,7 +2,7 @@
 % Please edit documentation in R/RUN_dscBLAST.R
 \name{RUN_dscBLAST.default}
 \alias{RUN_dscBLAST.default}
-\title{Title: RUN_dscBLAST.default}
+\title{RUN_dscBLAST.default}
 \usage{
 RUN_dscBLAST.default(sce, query_species, reference)
 }
@@ -14,9 +14,8 @@ RUN_dscBLAST.default(sce, query_species, reference)
 \item{reference}{options: c('ecto','meso','endo','exe','pre')}
 }
 \value{
-aurocs
 correlation bewtween query and ref celltypes
 }
 \description{
-Title: RUN_dscBLAST.default
+run dscBLAST(default)
 }

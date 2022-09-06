@@ -2,29 +2,26 @@
 % Please edit documentation in R/Plot.R
 \name{Heatmap_plot}
 \alias{Heatmap_plot}
-\title{Heatmap plot}
+\title{Heatmap_plot}
 \usage{
 Heatmap_plot(
   auc,
   top_n = 3,
   use_shortname = T,
-  color = colorRampPalette(brewer.pal(n = 7, name = "GnBu"))(100),
+  color = colorRampPalette(rev(brewer.pal(n = 7, name = "RdBu")))(100),
   save = F,
   cutoff = 0.8,
-  refine = T,
-  highlight = F
+  refine = T
 )
 }
 \arguments{
 \item{auc}{correlation bewtween query and ref celltypes(results from RUN_dscBLAST)}
 
-\item{top_n}{top n correlated cell_type
-default: 3}
+\item{top_n}{top n correlated cell_type[default: 3]}
 
 \item{use_shortname}{default: T}
 
-\item{color}{vectors of color
-default:colorRampPalette(rev(brewer.pal(n = 7, name = "RdBu")))(100)}
+\item{color}{vectors of color[default: colorRampPalette(rev(brewer.pal(n = 7, name = "RdBu")))(100)]}
 
 \item{save}{default: F}
 

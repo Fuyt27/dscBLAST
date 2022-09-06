@@ -2,7 +2,7 @@
 % Please edit documentation in R/Plot.R
 \name{Network_plot}
 \alias{Network_plot}
-\title{Networkplot}
+\title{Network_plot}
 \usage{
 Network_plot(
   auc,
@@ -11,26 +11,22 @@ Network_plot(
   use_shortname = T,
   save = F,
   cutoff = 0.8,
-  set.seed = 111,
-  highlight = F
+  set.seed = 111
 )
 }
 \arguments{
 \item{auc}{correlation bewtween query and ref celltypes(results from RUN_dscBLAST)}
 
-\item{top_n}{top n correlated cell_type
-default: 3}
+\item{top_n}{top n correlated cell type[default: 3]}
 
-\item{color}{vectors of color
-default: c("#ffcc99","#66cccc")}
+\item{color}{vectors of color[default: c("#ffcc99","#66cccc")]}
 
 \item{use_shortname}{default: T}
 
 \item{save}{default: F}
 
-\item{set.seed}{random value
-default: 111}
+\item{set.seed}{random value[default: 111]}
 }
 \description{
-Networkplot
+Network plot
 }

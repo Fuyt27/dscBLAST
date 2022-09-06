@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_dscBLASTobject.R
 \name{create_dscBLASTobject}
 \alias{create_dscBLASTobject}
-\title{Title:create dscBLAST object}
+\title{create_dscBLASTobject}
 \usage{
 create_dscBLASTobject(
   expression_profile,
@@ -19,25 +19,20 @@ create_dscBLASTobject(
 
 \item{query_species}{options: c('Hs','Mm')}
 
-\item{ref_species}{options: c('both','single')
-default: both}
+\item{ref_species}{options: c('both','single')[default: both]}
 
 \item{metadata}{meta data containing a \code{cell-type} column}
 
 \item{batch}{batch info in metadata needed in SCT transform
-if you offer a unnormalized matrix and want to normalize it by batch
-in this case,the metadata is expected to contain a \code{batch} column}
+if you offer a unnormalized matrix and want to normalize it by batch. In this case,the metadata is expected to contain a \code{batch} column}
 
-\item{downsample}{set number of cells
-default: 20000}
+\item{downsample}{set number of cells[default: 20000]}
 
-\item{mtx.type}{set the matrix type
-if you offer a normalized matrix,choose 'normalized' option
-default: raw}
+\item{mtx.type}{set the matrix type. If you offer a normalized matrix, choose 'normalized' option[default: raw]}
 }
 \value{
-sce a single cell experiment object or a list of single cell experiment  objects
+a single cell experiment object or a list of single cell experiment  objects
 }
 \description{
-Title:create dscBLAST object
+create a dscBLAST object
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/RUN_dscBLAST_stage.R
 \name{RUN_dscBLAST_stage}
 \alias{RUN_dscBLAST_stage}
-\title{Title:RUN_dscBLAST_stage}
+\title{RUN_dscBLAST_stage}
 \usage{
 RUN_dscBLAST_stage(
   sce,
@@ -10,16 +10,15 @@ RUN_dscBLAST_stage(
   query_species,
   top_n = 3,
   marker_top_n = 20,
-  ref_dir,
-  highlight = F
+  ref_dir
 )
 }
 \arguments{
-\item{sce}{singlecellexperiment object}
+\item{sce}{a single cell experiment object}
 
-\item{auc}{results from RUN_dscBLAST}
+\item{auc}{correlation bewtween query and ref celltypes (results from RUN_dscBLAST)}
 
-\item{query_species}{Hs/Mm}
+\item{query_species}{options: c('Hs','Mm')}
 
 \item{top_n}{default: 3}
 
@@ -28,8 +27,8 @@ RUN_dscBLAST_stage(
 \item{ref_dir}{ref data and meta stored here}
 }
 \value{
-auc_final
+correlation bewtween query and ref celltypes
 }
 \description{
-Title:RUN_dscBLAST_stage
+run dscBLAST with stage info
 }

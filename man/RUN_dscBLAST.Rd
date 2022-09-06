@@ -2,24 +2,22 @@
 % Please edit documentation in R/RUN_dscBLAST.R
 \name{RUN_dscBLAST}
 \alias{RUN_dscBLAST}
-\title{Title:RUN dscBLAST}
+\title{RUN_dscBLAST}
 \usage{
-RUN_dscBLAST(sce, query_species, reference = "all", highlight_celltype = NULL)
+RUN_dscBLAST(sce, query_species, reference = "all")
 }
 \arguments{
 \item{sce}{a single cell experiment object}
 
 \item{query_species}{options: c('Hs','Mm')}
 
-\item{reference}{options: c('all','ecto','meso','endo','exe','pre')
-default: 'all'}
+\item{reference}{options: c('all','ecto','meso','endo','exe','pre')[default: 'all']}
 
-\item{highlight_celltype}{celltype to highlight}
+\item{highlight_celltype}{celltypes to highlight[default: NULL]}
 }
 \value{
-auroc
 correlation bewtween query and ref celltypes
 }
 \description{
-Title:RUN dscBLAST
+run dscBLAST
 }

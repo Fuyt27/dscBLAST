@@ -5,11 +5,7 @@ dscBLAST: developing single cell Basic Local Alignment Search Tool
 
 
 ## Workflow
-
-- Data collection
-- Datasets processing
-- Reference 
-- Query
+![](Figure/workflow.jpg)
 
 ## **Install**
 
@@ -49,7 +45,7 @@ library(stringr)
   - default: SCT transform
   - if a normalized matrix is offered, set  `mtx.type`='normalized' [default: 'raw']
 - create dscBLAST object
-![](Figure/workflow.jpg)
+
 ```R
 library(dscBLAST)
 #input data loading

@@ -16,7 +16,7 @@ install.package('dscBLAST_1.0.0.tar.gz')
 
 ## **Tutorial**
 
-for demonstration purpose, we took the dataset ectoderm.rds as example.
+for demonstration purpose, we took the dataset **[ectoderm](https://github.com/Fuyt27/dscBLAST/releases/download/1.0.0/ectoderm.rds)** as example.
 
 #### Package loading
 
@@ -111,10 +111,9 @@ plotMarkers(sce,species = 'Hs',features = c('MLANA','TYRP1')) #Melanocyte marker
 
 
 #### Run dscBLAST with stage info
-
+make sure you have downloaded  **[ref.zip](https://github.com/Fuyt27/dscBLAST/releases/download/1.0.0/ref.zip)** and save it in your own local directory
 ```R
 #run dscBLAST with stage info
-##make sure you have downloaded  **[ref](https://github.com/Fuyt27/dscBLAST/archive/refs/tags/ref.zip)** and save it in your own local directory
 system('wget https://github.com/Fuyt27/dscBLAST/releases/download/1.0.0/ref.zip')
 auc2 <- RUN_dscBLAST_stage(sce,auc,query_species = 'Hs',ref_dir = 'you_local_dir')
 

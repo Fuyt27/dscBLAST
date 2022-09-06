@@ -66,12 +66,13 @@ sce<-create_dscBLASTobject(expression_profile = count,query_species= 'Hs',metada
 
 ```R
 #run dscBLAST
-auc <- RUN_dscBLAST(sce,query_species = 'Hs',reference = 'all')
+auc <- RUN_dscBLAST(sce,query_species = 'Hs',reference = 'all',highlight_celltype=NULL)
 
 ##generally we run dscblast in all datasets, if you prefer to run dscblast using certain datasets or datasets, please change the option `reference` ,for example:
-auc <- RUN_dscBLAST(sce,query_species = 'Hs',reference = c('ecto','pre'))
+auc <- RUN_dscBLAST(sce,query_species = 'Hs',reference = c('ecto','pre'),highlight_celltype=NULL)
 
-## if you want to highlight certain cell types, please set `hight_celltype`  
+## if you want to highlight certain cell types, please set `highlight_celltype`  
+auc <- RUN_dscBLAST(sce,query_species = 'Hs',reference = c('ecto','pre'),highlight_celltype='Melanocyte')
 ```
 
 

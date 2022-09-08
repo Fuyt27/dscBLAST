@@ -16,12 +16,12 @@ install.package('dscBLAST_1.0.1.tar.gz',repos=NULL,type='source')
 
 ## **Tutorial**
 
-for demonstration purpose, we took the dataset **[ectoderm](https://github.com/Fuyt27/dscBLAST/releases/download/1.0.1/ectoderm.rds)** as example.
+For demonstration purpose, we took the dataset **[ectoderm](https://github.com/Fuyt27/dscBLAST/releases/download/1.0.1/ectoderm.rds)** as example.
 
 #### Package loading
 
 ```R
-#make sure the following packages are in your R-library
+#make sure the following packages are installed in your R-library.
 library(MetaNeighbor)
 library(Seurat)
 library(SeuratObject)
@@ -80,7 +80,7 @@ auc <- RUN_dscBLAST(sce,query_species = 'Hs',reference = c('ecto','pre'),highlig
 
 #### Visualization
 
-we provide three forms of visualizations
+we provide three forms of visualization
 
 ```R
 #Sankey plot

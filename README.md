@@ -73,7 +73,7 @@ auc <- RUN_dscBLAST(sce,query_species = 'Hs',reference = 'all',highlight_celltyp
 auc <- RUN_dscBLAST(sce,query_species = 'Hs',reference = c('ecto','pre'),highlight_celltype=NULL)
 
 ## if you want to highlight certain cell types, please set `highlight_celltype`  
-auc <- RUN_dscBLAST(sce,query_species = 'Hs',reference = c('ecto','pre'),highlight_celltype='Melanocyte')
+auc_highlight <- RUN_dscBLAST(sce,query_species = 'Hs',reference = c('ecto','pre'),highlight_celltype='Melanocyte')
 ```
 
 
@@ -93,7 +93,7 @@ Network_plot(auc)
 Heatmap_plot(auc)
 
 #if you want to show highlight cell types only,please set `highlight=T`
-Sanky_plot(auc,highlight=T)
+Sanky_plot(auc_highlight,highlight=T)
 ```
 
 

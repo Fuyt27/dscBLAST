@@ -24,9 +24,8 @@ install.package('dscBLAST_1.0.1.tar.gz',repos=NULL,type='source')
 For demonstration purpose, we took the dataset **[ectoderm](https://github.com/Fuyt27/dscBLAST/releases/download/1.0.1/ectoderm.rds)** as example.
 
 #### Package loading
-
+Make sure the following packages are installed in your R-library.
 ```R
-#make sure the following packages are installed in your R-library.
 library(MetaNeighbor)
 library(Seurat)
 library(SeuratObject)
@@ -44,13 +43,13 @@ library(stringr)
 
 #### Data processing
 
-- detect MT genes
-- down-sample
-  - default: 20000 cells
-- normalization
+- Detect MT genes
+- Down-sample
+  - default: 50000 cells
+- Normalization
   - default: SCT transform
   - if a normalized matrix is offered, set  `mtx.type`='normalized' [default: 'raw']
-- create dscBLAST object
+- Create dscBLAST object
 
 ```R
 library(dscBLAST)
@@ -92,8 +91,7 @@ auc_highlight_result <- auc_highlight[['auc_highlight']]
 
 
 #### Visualization
-
-we provide three forms of visualization
+Three forms of visualization are provided
 
 ```R
 #Sankey plot
@@ -124,8 +122,7 @@ plotMarkers(sce,species = 'Hs',features = c('MLANA','TYRP1')) #Melanocyte marker
 
 
 #### Run dscBLAST with stage info
-This function helps to check the cell stage of the highest correlated cell types with your query cell
-m.ake sure you have downloaded  **[ref.zip](https://github.com/Fuyt27/dscBLAST/releases/download/1.0.1/ref.zip)** , unzip and save it in your own local directory
+This function helps to check the cell stage of the highest correlated cell types with your query cell. Make sure you have downloaded  **[ref.zip](https://github.com/Fuyt27/dscBLAST/releases/download/1.0.1/ref.zip)** , unzip and save it in your own local directory
 ```R
 #run dscBLAST with stage info
 auc2 <- RUN_dscBLAST_stage(sce,auc,query_species = 'Hs',ref_dir = 'your_local_dir')
@@ -144,5 +141,4 @@ For more details, please visit our website **[dscBLAST](http://bis.zju.edu.cn/ds
 
 
 ## Contact
-
 daiyuanliu@zju.edu.cn

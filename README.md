@@ -80,6 +80,14 @@ auc <- RUN_dscBLAST(sce,query_species = 'Hs',reference = c('ecto','pre'),highlig
 auc_highlight <- RUN_dscBLAST(sce,query_species = 'Hs',reference = c('ecto','pre'),highlight_celltype='Melanocyte')
 ```
 
+#### Check auc
+```R
+#get total auc 
+auc_result <- auc[['auc_total']]
+
+#get highlight auc 
+auc_highlight_result <- auc_highlight[['auc_highlight']]
+```
 
 
 #### Visualization

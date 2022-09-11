@@ -73,7 +73,7 @@ sce<-create_dscBLASTobject(expression_profile = count,query_species= 'Hs',metada
 #run dscBLAST
 auc <- RUN_dscBLAST(sce,query_species = 'Hs',reference = 'all',highlight_celltype=NULL)
 
-##generally we run dscblast in all datasets, if you prefer to run dscblast using certain datasets or datasets, please change the option `reference` ,for example:
+##generally we run dscblast in all datasets, and it takes time. If the origin of query cells is known and you prefer to run dscblast using certain reference, please change the option `reference` ,for example:
 auc <- RUN_dscBLAST(sce,query_species = 'Hs',reference = c('ecto','pre'),highlight_celltype=NULL)
 
 ## if you want to highlight certain cell types, please set `highlight_celltype`  

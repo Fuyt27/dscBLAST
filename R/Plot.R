@@ -16,6 +16,12 @@
 #' @param use_shortname
 #' default: T
 #'
+#' @param highlight
+#' default: F
+#' @param custom.row 
+#' default: NULL. If provided, filter rows in the auc matrix.
+#' @param custom.col
+#' default: NULL. If provided, filter columns in the auc matrix.
 #' @return p
 #' a sankey plot
 #' @export
@@ -25,9 +31,9 @@
 #' @importFrom webshot webshot
 #' @importFrom grDevices pdf dev.off
 #' @importFrom dplyr %>%
-Sanky_plot<- function(auc,top_n=3,color=c("#ffcc99","#66cccc"),use_shortname=T,save=T,cutoff=0.8,highlight=F) {
-  if(highlight){auc=auc[['auc_highlight']] %>%as.matrix()}
-  else{auc=auc[['auc_total']] %>%as.matrix()}
+Sanky_plot<- function(auc,top_n=3,color=c("#ffcc99","#66cccc"),use_shortname=T,save=T,cutoff=0.8,highlight=F,custom.row=NULL,custom.col=NULL) {
+  if(highlight){auc=auc[['auc_highlight']] %>%as.matrix()
+  }else{auc=auc[['auc_total']] %>%as.matrix()}
   rownames(auc)=colsplit(rownames(auc),'_',names = c('c1','c2'))$c2
   env_corr_list <- melt(auc)
   env_corr_list<-env_corr_list[,c(2,1,3)]
@@ -42,6 +48,11 @@ Sanky_plot<- function(auc,top_n=3,color=c("#ffcc99","#66cccc"),use_shortname=T,s
     edges <- rbind(edges,edges1)
   }
   edges=edges[edges$AUROC>=cutoff,]
+  
+  #filter query and ref celltype
+  if(!is.null(custom.row)){edges=edges[edges$ref %in% custom.row,]}
+  if(!is.null(custom.col)){edges=edges[edges$query %in% custom.col,]}
+  
   d3links <- edges
   d3nodes <- data.frame(name = unique(c(edges$query, edges$ref)), stringsAsFactors = FALSE)
   d3nodes$seq <- 0:(nrow(d3nodes) - 1)
@@ -83,12 +94,12 @@ Sanky_plot<- function(auc,top_n=3,color=c("#ffcc99","#66cccc"),use_shortname=T,s
                        NodeGroup = "Family",
                        colourScale = my_color,
                        units = "votes",
-                       height = length(d3links$target)*30,
-                       width =300,
-                       nodeWidth = 20,
+                     height = length(d3links$target)*30,
+                       width =500,
+                       nodeWidth = 30,
                        nodePadding = 10,
                        sinksRight = FALSE,
-                       fontSize = 8)
+                       fontSize = 12)
     #saving
     if(save){
       message('--Saving Plots--')
@@ -109,11 +120,11 @@ Sanky_plot<- function(auc,top_n=3,color=c("#ffcc99","#66cccc"),use_shortname=T,s
                      colourScale = my_color,
                      units = "votes",
                      height = length(d3links$target)*30,
-                     width =300,
-                     nodeWidth = 20,
+                     width =500,
+                     nodeWidth = 30,
                      nodePadding = 10,
                      sinksRight = FALSE,
-                     fontSize = 8)
+                     fontSize = 12)
   #saving
   if(save){
     message('--Saving Plots--')
@@ -143,11 +154,17 @@ Sanky_plot<- function(auc,top_n=3,color=c("#ffcc99","#66cccc"),use_shortname=T,s
 #' @param set.seed
 #' random value
 #' default: 111
+#' @param highlight
+#' default: F
+#' @param custom.row 
+#' default: NULL. If provided, filter rows in the auc matrix.
+#' @param custom.col
+#' default: NULL. If provided, filter columns in the auc matrix.
 #' @export
 #' @importFrom reshape2 melt colsplit
 #' @importFrom igraph graph_from_data_frame V E
 #' @importFrom dplyr %>%
-Network_plot<- function(auc,top_n=3,color=c("#ffcc99","#66cccc"),use_shortname=T,save=F,cutoff=0.8,set.seed=111,highlight=F) {
+Network_plot<- function(auc,top_n=3,color=c("#ffcc99","#66cccc"),use_shortname=T,save=F,cutoff=0.8,set.seed=111,highlight=F,custom.row=NULL,custom.col=NULL) {
   require(igraph)
   if(highlight){auc=auc[['auc_highlight']] %>%as.matrix()}
   else{auc=auc[['auc_total']] %>%as.matrix()}
@@ -165,6 +182,11 @@ Network_plot<- function(auc,top_n=3,color=c("#ffcc99","#66cccc"),use_shortname=T
     edges <- rbind(edges,edges1)
   }
   edges=edges[edges$AUROC>=cutoff,]
+  
+  #filter query and ref celltype
+  if(!is.null(custom.row)){edges=edges[edges$ref %in% custom.row,]}
+  if(!is.null(custom.col)){edges=edges[edges$query %in% custom.col,]}
+  
   net.igraph = graph_from_data_frame(edges,directed = F)
   V(net.igraph)$color = c(rep(color[1],time=length(unique(edges$query))),rep(color[2],time=length(unique(edges$ref))))
   shortName= colsplit(names(V(net.igraph)),'[|]',names = c('c1','c2'))$c2
@@ -187,12 +209,12 @@ Network_plot<- function(auc,top_n=3,color=c("#ffcc99","#66cccc"),use_shortname=T
       message('--Saving Plots--')
       pdf('Network.pdf',height = 10,width = 10)
       plot(net.igraph,
-           vertex.color = V(net.igraph)$color, #点的颜色
+           vertex.color = V(net.igraph)$color, 
            vertex.frame.color = 'white',vertex.label.family = 'sans',
            vertex.label = V(net.igraph)$shortName,#use_shortName = T
            vertex.label.cex = 0.9,
            vertex.label.color = 'black',
-           vertex.label.dist = 0, #label距离圆心的位???           edge.color = 'gray70',
+           vertex.label.dist = 0, 
            edge.sizes = E(net.igraph)$weight)
       dev.off()
 
@@ -213,12 +235,12 @@ Network_plot<- function(auc,top_n=3,color=c("#ffcc99","#66cccc"),use_shortname=T
       message('--Saving Plots--')
       pdf('Network.pdf',height = 10,width = 10)
       plot(net.igraph,
-           vertex.color = V(net.igraph)$color, #点的颜色
-           vertex.frame.color = 'white',#点边框颜???           vertex.label.family = 'sans',
-           vertex.label = V(net.igraph)$shortName,#use_shortName = T
+           vertex.color = V(net.igraph)$color,
+           vertex.frame.color = 'white',
+           vertex.label = V(net.igraph)$shortName,
            vertex.label.cex = 0.9,
            vertex.label.color = 'black',
-           vertex.label.dist = 0, #label距离圆心的位???           edge.color = 'gray70',
+           vertex.label.dist = 0, 
            edge.sizes = E(net.igraph)$weight)
       dev.off()
 
@@ -251,7 +273,7 @@ Network_plot<- function(auc,top_n=3,color=c("#ffcc99","#66cccc"),use_shortname=T
 #' @importFrom reshape2 colsplit melt
 #' @importFrom grDevices colorRampPalette
 #' @importFrom dplyr %>%
-Heatmap_plot<- function(auc,top_n=3,use_shortname=T,color=colorRampPalette(brewer.pal(n = 7,name = "GnBu"))(100),save=F,cutoff=0.8,refine=T,highlight=F) {
+Heatmap_plot<- function(auc,top_n=3,use_shortname=T,color=colorRampPalette(brewer.pal(n = 7,name = "GnBu"))(100),save=F,cutoff=0.8,refine=T,highlight=F,custom.row=NULL,custom.col=NULL) {
   if(highlight){
     auc=auc[['auc_highlight']] %>%as.matrix()
     }else{auc=auc[['auc_total']] %>%as.matrix()}
@@ -270,19 +292,28 @@ Heatmap_plot<- function(auc,top_n=3,use_shortname=T,color=colorRampPalette(brewe
     edges <- rbind(edges,edges1)
   }
   edges = edges[edges$AUROC >= cutoff, ]
+  
+  #filter query and ref celltype
+  if(!is.null(custom.row)){edges=edges[edges$ref %in% custom.row,]}
+  if(!is.null(custom.col)){edges=edges[edges$query %in% custom.col,]}
+  
   select = unique(edges$ref) %>% as.character()
   select_query =  unique(edges$query) %>% as.character()
   use_heatmap = auc[select, select_query] %>% as.data.frame()
-
+  
   if(dim(use_heatmap)[2]>1){
-  if (refine) {
+  if (refine & is.null(custom.row) & is.null(custom.col)) {
   for (i in 1:dim(use_heatmap)[2]) {
     use_heatmap = use_heatmap[order(-use_heatmap[[i]]),]
     use_heatmap[,i][(top_n +1):dim(use_heatmap)[1]] = 0
   }
-  }}
-  use_heatmap = use_heatmap[select, select_query] %>% as.matrix()
-  colnames(use_heatmap)=select_query
+  }
+    use_heatmap = use_heatmap[select, select_query] %>% as.matrix()
+    colnames(use_heatmap)=select_query
+  }else{colnames(use_heatmap)=select_query;rownames(use_heatmap)=select}
+  
+  #cutoff again
+  use_heatmap[use_heatmap<cutoff]=0
   if (use_shortname) {
     rownames(use_heatmap) = colsplit(rownames(use_heatmap),
                                      "[|]", names = c("c1", "c2"))$c2
@@ -332,7 +363,7 @@ Heatmap_plot<- function(auc,top_n=3,use_shortname=T,color=colorRampPalette(brewe
 #' @importFrom reshape2 melt
 #' @importFrom dplyr inner_join
 #' @importFrom ggplot2 ggplot 
-plotMarkers <- function(sce,species,features){
+plotMarkers <- function(sce,species,features,color=NULL){
   require(ggplot2)
   if(is.list(sce)){sce=sce[[species]]}
   gene=rownames(sce@assays@data$counts)
@@ -349,10 +380,23 @@ plotMarkers <- function(sce,species,features){
 
   anno=data.frame(CB=colnames(sce),celltype=sce$cell_type)
   vln.df=inner_join(vln.df,anno,by="CB")
-
+  #color choose
+  mycolor = c(c("#db6968","#4d97cd","#99cbeb","#459943",
+                "#fdc58f","#e8c559","#a3d393","#f8984e"),
+              brewer.pal(11,'Spectral'),
+              brewer.pal(11,'PRGn')[c(1:4)],
+              brewer.pal(11,'BrBG')[c(7:11,1:5)],
+              brewer.pal(11,'PiYG')[c(4:1)],
+              brewer.pal(11,'RdBu')[c(3:5,7:11)],
+              brewer.pal(11,'PiYG')[c(11:7)],
+              brewer.pal(11,'RdGy')[c(7:10)],
+              brewer.pal(12,'Set3')[c(3:12)]
+  )
+  if(is.null(color)){color=colorRampPalette(mycolor)(length(features))}
+  #plot
   p=vln.df%>%ggplot(aes(celltype,exp))+geom_violin(aes(fill=gene),scale = "width")+
     facet_grid(vln.df$gene~.,scales = "free_y")+
-    scale_fill_brewer(palette = "Set2",direction = 1)+
+    scale_fill_manual(values = color)+
     scale_x_discrete("")+ylab('Expression level')+
     theme_bw()+
     theme(

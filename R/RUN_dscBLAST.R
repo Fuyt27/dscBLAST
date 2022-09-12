@@ -109,7 +109,7 @@ RUN_dscBLAST.default<- function(sce,query_species,reference) {
 #'
 RUN_dscBLAST<- function(sce,query_species,reference='all',highlight_celltype=NULL) {
 if (!is.list(sce)) {
-    message('--Calculating AUC--')
+    message('--Calculating AUC using Metaneighbor--')
     if(length(reference)==1){
     if(reference=='all'){reference=c('ecto','meso','endo','exe','pre')}}
     aurocs =list()

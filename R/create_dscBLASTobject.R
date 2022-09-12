@@ -18,7 +18,7 @@
 #'
 #' @param downsample
 #' set number of cells
-#' default: 20000
+#' default: 50000
 #'
 #' @param mtx.type
 #' set the matrix type
@@ -31,9 +31,9 @@
 #' @export
 #'
 #' @importFrom Seurat PercentageFeatureSet as.SingleCellExperiment CreateSeuratObject SCTransform SplitObject
-create_dscBLASTobject <- function(expression_profile,query_species,ref_species='both',metadata,batch='default',downsample=20000,mtx.type='raw') {
+create_dscBLASTobject <- function(expression_profile,query_species,ref_species='both',metadata,cell_type,batch='default',downsample=50000,mtx.type='raw') {
   if(ref_species!='both'){
-    seob=Cell_qc(expression_profile,query_species,metadata,downsample)
+    seob=Cell_qc(expression_profile,query_species,metadata,cell_type,downsample)
     if(mtx.type=='raw'){
     message('--step3:SCT transform--')
     if(batch=='default'){
@@ -71,7 +71,7 @@ create_dscBLASTobject <- function(expression_profile,query_species,ref_species='
     }
     }
   else{
-    seob=Cell_qc(expression_profile,query_species,metadata,downsample)
+    seob=Cell_qc(expression_profile,query_species,metadata,cell_type,downsample)
     if(mtx.type=='raw'){
     if(batch=='default'){
       message('--step3:SCT transform--')

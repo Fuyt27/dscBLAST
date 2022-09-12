@@ -50,10 +50,10 @@ subset_data <- function(auc,top_n,ref_dir){
 #' @return ref_marker_list
 #' @export
 #'
-subset_marker <- function(ref_list,marker_top_n){
+subset_marker <- function(ref_list,marker_top_n=20){
   ref_marker_list=list()
   for (i in names(ref_list)) {
-    ref_marker_list[[i]] <- get_topN_markers(ref_list,i,marker_top_n = 20)  }
+    ref_marker_list[[i]] <- get_topN_markers(ref_list,i,marker_top_n)  }
   return(ref_marker_list)
 }
 
@@ -69,7 +69,7 @@ subset_marker <- function(ref_list,marker_top_n){
 #' @return topN markers from chosen dataset
 #' @export
 #' @importFrom dplyr %>% slice_max group_by
-get_topN_markers <- function(ref_list,reference,marker_top_n=20){
+get_topN_markers <- function(ref_list,reference,marker_top_n){
   if(reference=='ectoM'){
     markers_list = markers_list_ectoM[unique(ref_list[[reference]]$dataset)]
     total_list = list()
@@ -237,7 +237,6 @@ auc_calculate_withstage <- function(sce,pretrained_model,query_species,highlight
         study_id = sce$study_id, cell_type = sce$cell_type,
         fast_version = TRUE,node_degree_normalization=F)
       colnames(auc_list[[i]])=paste0(i,'_',colnames(auc_list[[i]]))
-      colnames(auc_list[[i]])=paste0(i,'_',colnames(auc_list[[i]]))
       auc_list[[i]]=t(auc_list[[i]])
     }
     target.num=length(unique(sce$cell_type))
@@ -266,7 +265,6 @@ auc_calculate_withstage <- function(sce,pretrained_model,query_species,highlight
           study_id = sce[[query_species]]$study_id, cell_type = sce[[query_species]]$cell_type,
           fast_version = TRUE,node_degree_normalization=F)
         colnames(auc_list[[i]])=paste0(i,'_',colnames(auc_list[[i]]))
-        colnames(auc_list[[i]])=paste0(i,'_',colnames(auc_list[[i]]))
         auc_list[[i]]=t(auc_list[[i]])}
       else{
         trans_species=ifelse(query_species == "Hs", 'Mm', 'Hs')
@@ -274,7 +272,6 @@ auc_calculate_withstage <- function(sce,pretrained_model,query_species,highlight
           trained_model = pretrained_model[[i]], dat = sce[[trans_species]],
           study_id = sce[[trans_species]]$study_id, cell_type = sce[[trans_species]]$cell_type,
           fast_version = TRUE,node_degree_normalization=F)
-        colnames(auc_list[[i]])=paste0(i,'_',colnames(auc_list[[i]]))
         colnames(auc_list[[i]])=paste0(i,'_',colnames(auc_list[[i]]))
         auc_list[[i]]=t(auc_list[[i]])
       }
@@ -332,29 +329,29 @@ transfer_gene <- function(expression_profile,query_species){
 #' Cell qc
 #'
 #' @param expression_profile
-#' a gene expression matrix
+#' a gene-cell expression matrix
 #' @param query_species
 #' options: c('Hs','Mm')
 #' @param metadata
-#' meta data containing a `cell-type` column
+#' meta data 
+#' @param cell_type
+#' the cell type info of query cells
 #' @param downsample
 #' set number of cells
-#' default: 20000
+#' default: 50000
 #' @return a seurat object of cells passing qulity control
 
 #' @export
 #' @importFrom Seurat CreateSeuratObject PercentageFeatureSet
 
-Cell_qc<-function(expression_profile,query_species,metadata,downsample=20000) {
+Cell_qc<-function(expression_profile,query_species,metadata,cell_type,downsample) {
   if (dim(expression_profile)[1]==0 ||dim(expression_profile)[2]==0) {
-    stop("`expression_profile`should be a cell-gene matrix")
-  }
-  if (!'cell_type'%in% colnames(meta)) {
-    stop("`cell_type`should be available in the metadata ")
+    stop("`expression_profile`should be a gene-cell matrix")
   }
   seob=CreateSeuratObject(counts =expression_profile, min.cells = 3, min.features = 200)
   seob$orig.ident='SeuratObject'
   seob@meta.data=metadata
+  seob$cell_type=cell_type
   message('--step1:detect MT genes--')
   if (query_species=='Mm') {
     seob$percent.mt=PercentageFeatureSet(seob,pattern = '^mt')
@@ -368,6 +365,7 @@ Cell_qc<-function(expression_profile,query_species,metadata,downsample=20000) {
     return(seob)
   }
   else{
+    set.seed(1)
     seob<-seob[,sample(dim(seob)[2],downsample)]
     return(seob)}
 }

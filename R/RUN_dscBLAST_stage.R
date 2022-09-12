@@ -35,7 +35,7 @@ RUN_dscBLAST_stage<- function(sce,auc,query_species,top_n=3,marker_top_n=20,ref_
     pretrained_model[[i]] <- trainModel_stage(var_genes = rownames(ref_list[[i]]),dat = ref_list[[i]],study_id = ref_list[[i]]$dataset,cell_type =ref_list[[i]]$cell_type,stage_id=ref_list[[i]]$stage)
     }
 
-  message('--step4:calculate auc--')
+  message('--step4:calculate auc using Metaneighbor--')
   auc_final=auc_calculate_withstage(sce,pretrained_model,query_species,highlight)
   message('--finished--')
   return(auc_final)

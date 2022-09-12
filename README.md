@@ -9,7 +9,7 @@ We collected more than 160 datasets form approximately 50 articles. These data w
 ![](Figure/workflow.jpg)
 
 ## **Download**
-click **[dscBLAST](https://github.com/Fuyt27/dscBLAST/archive/refs/tags/1.0.2.tar.gz)**
+click **[dscBLAST](https://github.com/Fuyt27/dscBLAST/archive/refs/tags/1.0.2.tar.gz)** or run this in the terminal
 ```shell
 wget https://github.com/Fuyt27/dscBLAST/archive/refs/tags/1.0.2.tar.gz
 ```

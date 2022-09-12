@@ -9,26 +9,27 @@ create_dscBLASTobject(
   query_species,
   ref_species = "both",
   metadata,
+  cell_type,
   batch = "default",
   downsample = 20000,
   mtx.type = "raw"
 )
 }
 \arguments{
-\item{expression_profile}{cell-gene matrix}
+\item{expression_profile}{a gene-cell matrix}
 
 \item{query_species}{options: c('Hs','Mm')}
 
 \item{ref_species}{options: c('both','single')[default: both]}
 
-\item{metadata}{meta data containing a \code{cell-type} column}
+\item{metadata}{meta data containing info about input}
+\item{cell_type}{cell type or cluster ID of input data}
 
-\item{batch}{batch info in metadata needed in SCT transform
-if you offer a unnormalized matrix and want to normalize it by batch. In this case,the metadata is expected to contain a \code{batch} column}
+\item{batch}{batch info in metadata needed in SCT transform. If you want to normalize your data depending on batch, please set `batch`='your_batchname', which is expected to be in the metadata. This parameter would be take into account only when `mtx.type` is set as 'raw'.}
 
-\item{downsample}{set number of cells[default: 20000]}
+\item{downsample}{set number of cells [default: 50000]}
 
-\item{mtx.type}{set the matrix type. If you offer a normalized matrix, choose 'normalized' option[default: raw]}
+\item{mtx.type}{set the matrix type. If you offer a normalized matrix, choose 'normalized' option [default: raw]}
 }
 \value{
 a single cell experiment object or a list of single cell experiment  objects

@@ -11,7 +11,7 @@ get_topN_markers(ref_list, dataset.use, marker_top_n = 20)
 
 \item{reference}{options: c('ectoM','mesoM','endoM','preM','exeM','ectoH','mesoH','endoH','preH','exeH')}
 
-\item{marker_top_n}{default: 20}
+\item{marker_top_n}{topN markers. N should be less than 20 [default: 20]}
 }
 \value{
 topN markers from each dataset

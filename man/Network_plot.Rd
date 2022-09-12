@@ -11,21 +11,27 @@ Network_plot(
   use_shortname = T,
   save = F,
   cutoff = 0.8,
-  set.seed = 111
+  set.seed = 111,
+  custom.row=NULL,
+  custom.col=NULL
 )
 }
 \arguments{
-\item{auc}{correlation bewtween query and ref celltypes(results from RUN_dscBLAST)}
+\item{auc}{correlation bewtween query and ref celltypes (results from RUN_dscBLAST)}
 
-\item{top_n}{top n correlated cell type[default: 3]}
+\item{top_n}{top n correlated cell type [default: 3]}
 
-\item{color}{vectors of color[default: c("#ffcc99","#66cccc")]}
+\item{color}{vectors of color [default: c("#ffcc99","#66cccc")]}
 
 \item{use_shortname}{default: T}
 
 \item{save}{default: F}
 
-\item{set.seed}{random value[default: 111]}
+\item{set.seed}{random value [default: 111]}
+
+\item{custom.row}{If provided, filter rows in the auc matrix [default: NULL]}
+
+\item{custom.col}{If provided, filter columns in the auc matrix [default: NULL]}
 }
 \description{
 Network plot

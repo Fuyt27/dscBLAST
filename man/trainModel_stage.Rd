@@ -11,7 +11,7 @@ trainModel_stage(var_genes, dat, i = 1, study_id, cell_type, stage_id)
 
 \item{dat}{a single cell experiment object}
 
-\item{i}{a number[default:1]}
+\item{i}{a number[default: 1]}
 
 \item{study_id}{ref dataset info}
 

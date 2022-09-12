@@ -9,7 +9,7 @@ subset_marker(ref_list, marker_top_n)
 \arguments{
 \item{ref_list}{reference list}
 
-\item{marker_top_n}{top N markers[default: 20]}
+\item{marker_top_n}{topN markers. N should be less than 20 [default: 20]}
 }
 \value{
 a list of ref markers

@@ -4,16 +4,18 @@
 \alias{Cell_qc}
 \title{Cell_qc}
 \usage{
-Cell_qc(expression_profile, query_species, metadata, downsample = 20000)
+Cell_qc(expression_profile, query_species, metadata, downsample = 50000)
 }
 \arguments{
-\item{expression_profile}{a gene expression matrix}
+\item{expression_profile}{a gene-cell expression matrix}
 
 \item{query_species}{options: c('Hs','Mm')}
 
-\item{metadata}{meta data containing a \code{cell-type} column}
+\item{metadata}{meta data containing info about input}
+\item{cell_type}{cell type or cluster ID of input data}
+\item{downsample}{set number of cells [default: 50000]}
 
-\item{downsample}{set number of cells [default: 20000]}
+
 }
 \value{
 a seurat object of cells passing qulity control

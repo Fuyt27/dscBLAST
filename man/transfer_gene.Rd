@@ -7,12 +7,12 @@
 transfer_gene(expression_profile, query_species)
 }
 \arguments{
-\item{expression_profile}{a gene expression matrix}
+\item{expression_profile}{a gene-cell matrix}
 
 \item{query_species}{options: c('Hs','Mm')}
 }
 \value{
-a transfered cell-gene matrix
+a transfered gene-cell matrix
 }
 \description{
 transfer mouse gene to human gene or in turn

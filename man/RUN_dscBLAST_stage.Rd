@@ -22,7 +22,7 @@ RUN_dscBLAST_stage(
 
 \item{top_n}{default: 3}
 
-\item{marker_top_n}{default: 20}
+\item{marker_top_n}{topN markers. N should be less than 20 [default: 20]}
 
 \item{ref_dir}{ref data and meta stored here}
 }

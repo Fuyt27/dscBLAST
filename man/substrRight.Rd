@@ -9,7 +9,7 @@ substrRight(x, n=1)
 \arguments{
 \item{x}{a character}
 
-\item{n}{order from right[default: 1]}
+\item{n}{order from right [default: 1]}
 }
 \value{
 one character from right

@@ -10,19 +10,25 @@ Sanky_plot(
   color = c("#ffcc99", "#66cccc"),
   use_shortname = T,
   save = T,
-  cutoff = 0.8
+  cutoff = 0.8,
+  custom.row=NULL,
+  custom.col=NULL
 )
 }
 \arguments{
-\item{auc}{correlation bewtween query and ref celltypes(results from RUN_dscBLAST)}
+\item{auc}{correlation bewtween query and ref celltypes (results from RUN_dscBLAST)}
 
-\item{top_n}{top n correlated cell_type[default: 3]}
+\item{top_n}{top n correlated cell_type [default: 3]}
 
-\item{color}{vectors of colors[default: c("#ffcc99","#66cccc")]}
+\item{color}{vectors of colors [default: c("#ffcc99","#66cccc")]}
 
 \item{use_shortname}{default: T}
 
 \item{save}{default: T}
+
+\item{custom.row}{If provided, filter rows in the auc matrix [default: NULL]}
+
+\item{custom.col}{If provided, filter columns in the auc matrix [default: NULL]}
 }
 
 \description{

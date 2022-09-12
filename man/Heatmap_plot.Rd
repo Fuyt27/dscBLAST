@@ -11,21 +11,27 @@ Heatmap_plot(
   color = colorRampPalette(rev(brewer.pal(n = 7, name = "RdBu")))(100),
   save = F,
   cutoff = 0.8,
-  refine = T
+  refine = T,
+  custom.row=NULL,
+  custom.col=NULL
 )
 }
 \arguments{
-\item{auc}{correlation bewtween query and ref celltypes(results from RUN_dscBLAST)}
+\item{auc}{correlation bewtween query and ref celltypes (results from RUN_dscBLAST)}
 
-\item{top_n}{top n correlated cell_type[default: 3]}
+\item{top_n}{top n correlated cell_type [default: 3]}
 
 \item{use_shortname}{default: T}
 
-\item{color}{vectors of color[default: colorRampPalette(rev(brewer.pal(n = 7, name = "RdBu")))(100)]}
+\item{color}{vectors of color [default: colorRampPalette(rev(brewer.pal(n = 7, name = "RdBu")))(100)]}
 
 \item{save}{default: F}
 
 \item{refine}{default: T}
+
+\item{custom.row}{If provided, filter rows in the auc matrix [default: NULL]}
+
+\item{custom.col}{If provided, filter columns in the auc matrix [default: NULL]}
 }
 \description{
 Heatmap plot

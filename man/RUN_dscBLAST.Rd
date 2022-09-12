@@ -11,9 +11,9 @@ RUN_dscBLAST(sce, query_species, reference = "all")
 
 \item{query_species}{options: c('Hs','Mm')}
 
-\item{reference}{options: c('all','ecto','meso','endo','exe','pre')[default: 'all']}
+\item{reference}{reference used. Generally we run dscblast in all datasets, and it takes time. If the origin of query cells is known and you prefer to run dscblast using certain reference, please change the option. options: c('all','ecto','meso','endo','exe','pre') [default: 'all'] }
 
-\item{highlight_celltype}{celltypes to highlight[default: NULL]}
+\item{highlight_celltype}{celltypes to highlight [default: NULL]}
 }
 \value{
 correlation bewtween query and ref celltypes

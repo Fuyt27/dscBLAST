@@ -7,9 +7,9 @@
 subset_data(auc, top_n, ref_dir)
 }
 \arguments{
-\item{auc}{correlation bewtween query and ref celltypes(results from RUN_dscBLAST)}
+\item{auc}{correlation bewtween query and ref celltypes (results from RUN_dscBLAST)}
 
-\item{top_n}{top n correlated cell_type[default: 3]}
+\item{top_n}{top n correlated cell_type [default: 3]}
 
 \item{ref_dir}{ref data and meta stored here}
 }

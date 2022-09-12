@@ -9,7 +9,7 @@ We collected more than 160 datasets form approximately 50 articles. These data w
 ![](Figure/workflow.jpg)
 
 ## **Download**
-click **[dscBLAST](https://github.com/Fuyt27/dscBLAST/archive/refs/tags/1.0.2.tar.gz)** or run this in the terminal
+click **[dscBLAST](https://github.com/Fuyt27/dscBLAST/archive/refs/tags/1.0.2.tar.gz)** or run this in the terminal:
 ```shell
 wget https://github.com/Fuyt27/dscBLAST/archive/refs/tags/1.0.2.tar.gz
 ```
@@ -95,16 +95,19 @@ Three forms of visualization are provided
 
 ```R
 #Sankey plot
-Sanky_plot(auc)
+Sanky_plot(auc,top_n = 3,cutoff = 0.8,use_shortname = T)
 
 #Network plot
-Network_plot(auc)
+Network_plot(auc,top_n = 3,cutoff = 0.8,use_shortname = T)
 
 #Heatmap plot
-Heatmap_plot(auc)
+Heatmap_plot(auc,top_n = 3,cutoff = 0.8,use_shortname = T)
 
 #if you want to show highlight cell types only,please set `highlight=T`
-Sanky_plot(auc_highlight,highlight=T)
+Sanky_plot(auc_highlight,top_n = 3,cutoff = 0.8,highlight=T)
+
+#if you want to define the query and ref celltype in the auc result matrix,please set  `custom.row` and `custom.col`.
+Sanky_plot(auc,custom.row = c('Brain_Eze|central_intermediate progenitor cells','Organogenesis_Cao|Ependymal cell','NervousSystem_Zeisel|Chorid plexus epithelial cells','Organogenesis_Cao|Inhibitory neuron'),custom.col =c('Query|Choroid plexus','Query|early neuron'),top_n = 3,cutoff = 0.8)
 ```
 
 

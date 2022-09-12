@@ -106,7 +106,7 @@ Heatmap_plot(auc,top_n = 3,cutoff = 0.8,use_shortname = T)
 #if you want to show highlight cell types only,please set `highlight=T`
 Sanky_plot(auc_highlight,top_n = 3,cutoff = 0.8,highlight=T)
 
-#if you want to define the query and ref celltype in the auc result matrix,please set  `custom.row` and `custom.col`.
+#if you want to define the query and ref celltype in the auc result matrix, please set  `custom.row` and `custom.col`.
 Sanky_plot(auc,custom.row = c('Brain_Eze|central_intermediate progenitor cells','Organogenesis_Cao|Ependymal cell','NervousSystem_Zeisel|Chorid plexus epithelial cells','Organogenesis_Cao|Inhibitory neuron'),custom.col =c('Query|Choroid plexus','Query|early neuron'),top_n = 3,cutoff = 0.8)
 ```
 
@@ -115,8 +115,13 @@ Sanky_plot(auc,custom.row = c('Brain_Eze|central_intermediate progenitor cells',
 #### Marker
 
 ```R
+# help to get markers from all datasets of a given species,for example:
+marker_total <- getTotalMarkers(species ='Hs')
+#if you only want to get markers from certain references
+marker_certain_reference <- getTotalMarkers(species ='Hs',reference = c('ecto','endo'))
+
 # help to get markers from certain datasets and cell types,for example:
-marker_list <- getMarkers(species ='Hs',reference ='ecto' ,ref_celltype ='Melanocyte',ref_dataset ='Eye_Han' ,marker_top_n =20)
+marker_certain_dataset_celltype <- getMarkers(species ='Hs',reference ='ecto' ,ref_celltype ='Melanocyte',ref_dataset ='Eye_Han' ,marker_top_n =20)
 
 #Plot markers in your data
 plotMarkers(sce,species = 'Hs',features = c('MLANA','TYRP1')) #Melanocyte markers

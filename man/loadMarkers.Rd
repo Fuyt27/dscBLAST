@@ -15,5 +15,5 @@ loadMarkers(species, reference)
 markers list
 }
 \description{
-loadMarkers
+load Markers from references
 }

@@ -9,11 +9,11 @@ getTotalMarkers(species, reference = "all")
 \arguments{
 \item{species}{options: c('Hs','Mm')}
 
-\item{reference}{options: c('ecto','meso','endo','exe','pre')}
+\item{reference}{options: c('ecto','meso','endo','exe','pre') [default: all]}
 }
 \value{
 markers list
 }
 \description{
-getTotalMarkers
+get total Markers from all references or certain reference
 }

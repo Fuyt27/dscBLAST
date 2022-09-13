@@ -135,7 +135,7 @@ if (!is.list(sce)) {
   else{
     if(length(reference)==1){
       if(reference=='all'){reference=c('ecto','meso','endo','exe','pre')}}
-      message('--Calculating AUC--')
+      message('--Calculating AUC using Metaneighbor--')
       aurocs1 =list()
       for (i in reference){
         aurocs1[[i]]=RUN_dscBLAST.default(sce[[query_species]],query_species,i)}

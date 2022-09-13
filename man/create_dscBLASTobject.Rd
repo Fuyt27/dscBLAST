@@ -20,7 +20,7 @@ create_dscBLASTobject(
 
 \item{query_species}{options: c('Hs','Mm')}
 
-\item{ref_species}{options: c('both','single')[default: both]}
+\item{ref_species}{options: c('both','single') [default: both]}
 
 \item{metadata}{meta data containing info about input}
 \item{cell_type}{cell type or cluster ID of input data}

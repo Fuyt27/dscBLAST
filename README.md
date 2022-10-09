@@ -2,7 +2,7 @@
 
 dscBLAST: developing single cell Basic Local Alignment Search Tool
 
-We collected more than 160 datasets form approximately 50 articles. These data were grouped into five references: Ectoderm, Endoderm, Mesoderm, pre-organogenesis and extra-embryonic tissues. The correlation between query cells and reference cells is calculated using Metaneighbor. dscBLAST is particularly better at developing data, and it also performs very well on adult data.
+We collected more than 160 datasets from approximately 50 articles. These data were grouped into five references: Ectoderm, Endoderm, Mesoderm, pre-organogenesis and extra-embryonic tissues. The correlation between query cells and reference cells is calculated using Metaneighbor. dscBLAST is particularly better at developing data, and it also performs very well on adult data.
 
 
 ## Workflow

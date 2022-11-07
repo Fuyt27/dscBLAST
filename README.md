@@ -76,7 +76,7 @@ auc <- RUN_dscBLAST(sce,query_species = 'Hs',reference = 'all',highlight_celltyp
 ##generally we run dscblast in all datasets, and it takes time. If the origin of query cells is known and you prefer to run dscblast using certain reference, please change the option `reference` ,for example:
 auc <- RUN_dscBLAST(sce,query_species = 'Hs',reference = c('ecto','pre'),highlight_celltype=NULL)
 
-## if you want to highlight certain cell types, please set `highlight_celltype`  
+## if you want to highlight certain cell types, please set `highlight_celltype`.  
 auc_highlight <- RUN_dscBLAST(sce,query_species = 'Hs',reference = c('ecto','pre'),highlight_celltype='Melanocyte')
 ```
 
@@ -91,7 +91,7 @@ auc_highlight_result <- auc_highlight[['auc_highlight']]
 
 
 #### Visualization
-Three forms of visualization are provided
+Three forms of visualization are provided.
 
 ```R
 #Sankey plot
@@ -103,7 +103,7 @@ Network_plot(auc,top_n = 3,cutoff = 0.8,use_shortname = T)
 #Heatmap plot
 Heatmap_plot(auc,top_n = 3,cutoff = 0.8,use_shortname = T)
 
-#if you want to show highlight cell types only,please set `highlight=T`
+#if you want to show highlight cell types only,please set `highlight=T`.
 Sanky_plot(auc_highlight,top_n = 3,cutoff = 0.8,highlight=T)
 
 #if you want to define the query and ref celltype in the auc result matrix, please set  `custom.row` and `custom.col`.
@@ -117,7 +117,7 @@ Sanky_plot(auc,custom.row = c('Brain_Eze|central_intermediate progenitor cells',
 ```R
 # help to get markers from all datasets of a given species,for example:
 marker_total <- getTotalMarkers(species ='Hs')
-#if you only want to get markers from certain references
+#if you only want to get markers from certain references.
 marker_certain_reference <- getTotalMarkers(species ='Hs',reference = c('ecto','endo'))
 
 # help to get markers from certain datasets and cell types,for example:
@@ -130,7 +130,7 @@ plotMarkers(sce,species = 'Hs',features = c('MLANA','TYRP1')) #Melanocyte marker
 
 
 #### Run dscBLAST with stage info
-This function helps to check the cell stage of the highest correlated cell types with your query cell. Make sure you have downloaded  **[ref.zip](https://github.com/Fuyt27/dscBLAST/releases/download/1.0.2/ref.zip)** , unzip and save it in your own local directory
+This function helps to check the cell stage of the highest correlated cell types with your query cell. Make sure you have downloaded  **[ref.zip](https://github.com/Fuyt27/dscBLAST/releases/download/1.0.2/ref.zip)** , unzip and save it in your own local directory.
 ```R
 #run dscBLAST with stage info
 auc2 <- RUN_dscBLAST_stage(sce,auc,query_species = 'Hs',ref_dir = 'your_local_dir')
@@ -142,7 +142,7 @@ Sanky_plot(auc2)
 ```
 
 ## Web-based interface
-For more details, please visit our website **[dscBLAST](http://bis.zju.edu.cn/dscblast/index.html)**
+For more details, please visit our website **[dscBLAST](http://bis.zju.edu.cn/dscblast/index.html)**.
 
 
 ## Citation

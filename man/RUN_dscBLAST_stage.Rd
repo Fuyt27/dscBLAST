@@ -27,7 +27,7 @@ RUN_dscBLAST_stage(
 \item{ref_dir}{ref data and meta stored here}
 }
 \value{
-correlation bewtween query and ref celltypes
+correlation between query and ref celltypes
 }
 \description{
 run dscBLAST with stage info

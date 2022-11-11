@@ -25,7 +25,7 @@ create_dscBLASTobject(
 \item{metadata}{meta data containing info about input}
 \item{cell_type}{cell type of input data}
 
-\item{batch}{batch info in metadata needed in SCT transform. If you want to normalize your data depending on batch, please set `batch`='your_batchname', which is expected to be in the metadata. This parameter would be take into account only when `mtx.type` is set as 'raw'.}
+\item{batch}{batch info in metadata needed in SCT transform. If you want to normalize your data depending on batch, please set `batch`='your_batchname', which is expected to be in the metadata. This parameter would be taken into account only when `mtx.type` is set as 'raw'.}
 
 \item{downsample}{set number of cells [default: 50000]}
 

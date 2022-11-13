@@ -88,7 +88,7 @@ auc_result <- auc[['auc_total']]
 #get highlight auc 
 auc_highlight_result <- auc_highlight[['auc_highlight']]
 
-#save auc results(txt recommended)
+#save auc results in txt format(recommended)
 library(data.table)
 fwrite(auc_result,file = './auc_result.txt',quote = F,row.names = T,col.names = T,sep = '\t')
 fwrite(auc_result,file = './auc_highlight.txt',quote = F,row.names = T,col.names = T,sep = '\t')

@@ -112,7 +112,9 @@ Heatmap_plot(auc,top_n = 3,cutoff = 0.8,use_shortname = T)
 Sanky_plot(auc_highlight,top_n = 3,cutoff = 0.8,highlight=T)
 
 #if you want to define the query and ref celltype in the auc result matrix, please set  `custom.row` and `custom.col`.
-Sanky_plot(auc,custom.row = c('Brain_Eze|central_intermediate progenitor cells','Organogenesis_Cao|Ependymal cell','NervousSystem_Zeisel|Chorid plexus epithelial cells','Organogenesis_Cao|Inhibitory neuron'),custom.col =c('Query|Choroid plexus','Query|early neuron'),top_n = 3,cutoff = 0.8)
+custom.ref= c('Brain_Eze|central_intermediate progenitor cells','Organogenesis_Cao|Ependymal cell','NervousSystem_Zeisel|Chorid plexus epithelial cells','Organogenesis_Cao|Inhibitory neuron')
+custom.query=c('Query|Choroid plexus','Query|early neuron')
+Sanky_plot(auc,custom.row = custom.ref,custom.col =custom.query,top_n = 3,cutoff = 0.8)
 ```
 
 

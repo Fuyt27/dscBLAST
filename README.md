@@ -138,7 +138,7 @@ plotMarkers(sce,species = 'Hs',features = c('MLANA','TYRP1')) #Melanocyte marker
 This function helps to check the cell stage of the highest correlated cell types with your query cell. Make sure you have downloaded  **[ref.zip](https://github.com/Fuyt27/dscBLAST/releases/download/1.0.2/ref.zip)** , unzip and save it in your own local directory.
 ```R
 #run dscBLAST with stage info
-auc2 <- RUN_dscBLAST_stage(sce,auc,query_species = 'Hs',ref_dir = 'your_local_dir')
+auc_stage <- RUN_dscBLAST_stage(sce,auc,query_species = 'Hs',ref_dir = 'your_local_dir')
 
 #visualization
 Heatmap_plot(auc2)

@@ -46,14 +46,14 @@ Sanky_plot<- function(auc,top_n=3,color=c("#ffcc99","#66cccc"),use_shortname=T,s
     edges1=edges1[sort(edges1$AUROC,decreasing = T,index.return=T)$ix[1:top_n],]
     edges <- rbind(edges,edges1)
   }
-  edges$ref=colsplit(edges$ref,'_',names = c('c1','c2'))$c2
+  edges$ref1=colsplit(edges$ref,'_',names = c('c1','c2'))$c2
   edges=edges[edges$AUROC>=cutoff,]
   
   #filter query and ref celltype
-  if(!is.null(custom.row)){edges=edges[edges$ref %in% custom.row,]}
+  if(!is.null(custom.row)){edges=edges[edges$ref1 %in% custom.row,]}
   if(!is.null(custom.col)){edges=edges[edges$query %in% custom.col,]}
   
-  d3links <- edges
+  d3links <- edges[,c(1:3]
   d3nodes <- data.frame(name = unique(c(edges$query, edges$ref)), stringsAsFactors = FALSE)
   d3nodes$seq <- 0:(nrow(d3nodes) - 1)
   query_num=dim(d3nodes[grepl('Query',d3nodes$name),])[1]
@@ -180,12 +180,13 @@ Network_plot<- function(auc,top_n=3,color=c("#ffcc99","#66cccc"),use_shortname=T
     edges1=edges1[sort(edges1$AUROC,decreasing = T,index.return=T)$ix[1:top_n],]
     edges <- rbind(edges,edges1)
   }
-  edges$ref=colsplit(edges$ref,'_',names = c('c1','c2'))$c2
+  edges$ref1=colsplit(edges$ref,'_',names = c('c1','c2'))$c2
   edges=edges[edges$AUROC>=cutoff,]
   
   #filter query and ref celltype
-  if(!is.null(custom.row)){edges=edges[edges$ref %in% custom.row,]}
+  if(!is.null(custom.row)){edges=edges[edges$ref1 %in% custom.row,]}
   if(!is.null(custom.col)){edges=edges[edges$query %in% custom.col,]}
+  edges=edges[,c(1:3)]
   
   net.igraph = graph_from_data_frame(edges,directed = F)
   V(net.igraph)$color = c(rep(color[1],time=length(unique(edges$query))),rep(color[2],time=length(unique(edges$ref))))
@@ -295,15 +296,15 @@ Heatmap_plot<- function(auc,top_n=3,use_shortname=T,color=colorRampPalette(brewe
     ]
     edges <- rbind(edges, edges1)
   }
-  edges$ref=colsplit(edges$ref,'_',names = c('c1','c2'))$c2
+  edges$ref1=colsplit(edges$ref,'_',names = c('c1','c2'))$c2
   edges = edges[edges$AUROC >= cutoff, ]
-  edges$ref=colsplit(edges$ref,'_',names = c('c1','c2'))$c2
   if (!is.null(custom.row)) {
-    edges = edges[edges$ref %in% custom.row, ]
+    edges = edges[edges$ref1 %in% custom.row, ]
   }
   if (!is.null(custom.col)) {
     edges = edges[edges$query %in% custom.col, ]
   }
+  edges=edges[,c(1:3)]
   select = unique(edges$ref) %>% as.character()
   select_query = unique(edges$query) %>% as.character()
   use_heatmap = auc[select, select_query] %>% as.data.frame()

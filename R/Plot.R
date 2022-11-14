@@ -53,7 +53,7 @@ Sanky_plot<- function(auc,top_n=3,color=c("#ffcc99","#66cccc"),use_shortname=T,s
   if(!is.null(custom.row)){edges=edges[edges$ref1 %in% custom.row,]}
   if(!is.null(custom.col)){edges=edges[edges$query %in% custom.col,]}
   
-  d3links <- edges[,c(1:3]
+  d3links <- edges[,c(1:3)]
   d3nodes <- data.frame(name = unique(c(edges$query, edges$ref)), stringsAsFactors = FALSE)
   d3nodes$seq <- 0:(nrow(d3nodes) - 1)
   query_num=dim(d3nodes[grepl('Query',d3nodes$name),])[1]

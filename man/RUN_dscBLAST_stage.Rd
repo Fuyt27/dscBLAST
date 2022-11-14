@@ -16,7 +16,7 @@ RUN_dscBLAST_stage(
 \arguments{
 \item{sce}{a single cell experiment object}
 
-\item{auc}{correlation bewtween query and ref celltypes (results from RUN_dscBLAST)}
+\item{auc}{correlation between query and ref celltypes (results from RUN_dscBLAST)}
 
 \item{query_species}{options: c('Hs','Mm')}
 

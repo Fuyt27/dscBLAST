@@ -61,8 +61,8 @@ meta<-seob@meta.data #input metadata
 #data processing
 ##generally we run dscblast in both human and mouse datasets(recommanded!), if you prefer to run dscblast for one species, please set ref_species ='single'.
 ## if you want to normalize your data depending on batch, please set `batch` ='your_batchname', which is expected to be offered in the meta data. This parameter would be take into account only when `mtx.type` is set as 'raw'.
-## if the expression_profile offered is normalized in advance, please set `mtx.type` = 'normalized'.
-sce<-create_dscBLASTobject(expression_profile = count,query_species= 'Hs',metadata = meta,cell_type=meta$cell_type,downsample = 20000,batch ='default',mtx.type = 'raw',ref_species ='both')
+## if the expression_matrix offered is normalized in advance, please set `mtx.type` = 'normalized'.
+sce<-create_dscBLASTobject(expression_matrix = count,query_species= 'Hs',metadata = meta,cell_type=meta$cell_type,downsample = 20000,batch ='default',mtx.type = 'raw',ref_species ='both')
 ```
 
 

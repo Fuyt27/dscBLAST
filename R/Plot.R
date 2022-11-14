@@ -273,81 +273,86 @@ Network_plot<- function(auc,top_n=3,color=c("#ffcc99","#66cccc"),use_shortname=T
 #' @importFrom reshape2 colsplit melt
 #' @importFrom grDevices colorRampPalette
 #' @importFrom dplyr %>%
-Heatmap_plot<- function(auc,top_n=3,use_shortname=T,color=colorRampPalette(brewer.pal(n = 7,name = "GnBu"))(100),save=F,cutoff=0.8,refine=T,highlight=F,custom.row=NULL,custom.col=NULL) {
-  if(highlight){
-    auc=auc[['auc_highlight']] %>%as.matrix()
-    }else{auc=auc[['auc_total']] %>%as.matrix()}
-
-  rownames(auc)=colsplit(rownames(auc),'_',names = c('c1','c2'))$c2
+Heatmap_plot<- function(auc,top_n=3,use_shortname=T,color=colorRampPalette(brewer.pal(n = 7,name = "GnBu"))(100),save=F,cutoff=0.8,refine=T,highlight=F,custom.row=NULL,custom.col=NULL) 
+  {
+  if (highlight) {
+    auc = auc[["auc_highlight"]] %>% as.matrix()
+  }
+  else {
+    auc = auc[["auc_total"]] %>% as.matrix()
+  }
+  # rownames(auc) = colsplit(rownames(auc), "_", names = c("c1", 
+  #                                                        "c2"))$c2
   env_corr_list <- melt(auc)
-  env_corr_list<-env_corr_list[,c(2,1,3)]
-  colnames(env_corr_list )<-c("query","ref","AUROC")
-  query_name=unique(env_corr_list$query)
-  edges <- data.frame(matrix(nrow = 0,ncol = 3))
-  colnames(edges)=colnames(env_corr_list)
+  env_corr_list <- env_corr_list[, c(2, 1, 3)]
+  colnames(env_corr_list) <- c("query", "ref", "AUROC")
+  query_name = unique(env_corr_list$query)
+  edges <- data.frame(matrix(nrow = 0, ncol = 3))
+  colnames(edges) = colnames(env_corr_list)
   for (i in 1:length(query_name)) {
-    Row <- which(query_name[i] ==  env_corr_list[,"query", drop = TRUE])
-    edges1=env_corr_list[Row,]
-    edges1=edges1[sort(edges1$AUROC,decreasing = T,index.return=T)$ix[1:top_n],]
-    edges <- rbind(edges,edges1)
+    Row <- which(query_name[i] == env_corr_list[, "query", 
+                                                drop = TRUE])
+    edges1 = env_corr_list[Row, ]
+    edges1 = edges1[sort(edges1$AUROC, decreasing = T, index.return = T)$ix[1:top_n], 
+    ]
+    edges <- rbind(edges, edges1)
   }
   edges = edges[edges$AUROC >= cutoff, ]
-  
-  #filter query and ref celltype
-  if(!is.null(custom.row)){edges=edges[edges$ref %in% custom.row,]}
-  if(!is.null(custom.col)){edges=edges[edges$query %in% custom.col,]}
-  
+  edges$ref=colsplit(edges$ref,'_',names = c('c1','c2'))$c2
+  if (!is.null(custom.row)) {
+    edges = edges[edges$ref %in% custom.row, ]
+  }
+  if (!is.null(custom.col)) {
+    edges = edges[edges$query %in% custom.col, ]
+  }
   select = unique(edges$ref) %>% as.character()
-  select_query =  unique(edges$query) %>% as.character()
+  select_query = unique(edges$query) %>% as.character()
   use_heatmap = auc[select, select_query] %>% as.data.frame()
-  
-  if(dim(use_heatmap)[2]>1){
-  if (refine & is.null(custom.row) & is.null(custom.col)) {
-  for (i in 1:dim(use_heatmap)[2]) {
-    use_heatmap = use_heatmap[order(-use_heatmap[[i]]),]
-    use_heatmap[,i][(top_n +1):dim(use_heatmap)[1]] = 0
-  }
-  }
+  if (dim(use_heatmap)[2] > 1) {
+    if (refine & is.null(custom.row) & is.null(custom.col)) {
+      for (i in 1:dim(use_heatmap)[2]) {
+        use_heatmap = use_heatmap[order(-use_heatmap[[i]]), 
+        ]
+        use_heatmap[, i][(top_n + 1):dim(use_heatmap)[1]] = 0
+      }
+    }
     use_heatmap = use_heatmap[select, select_query] %>% as.matrix()
-    colnames(use_heatmap)=select_query
-  }else{colnames(use_heatmap)=select_query;rownames(use_heatmap)=select}
-  
-  #cutoff again
-  use_heatmap[use_heatmap<cutoff]=0
-  if (use_shortname) {
-    rownames(use_heatmap) = colsplit(rownames(use_heatmap),
-                                     "[|]", names = c("c1", "c2"))$c2
-    pheatmap(use_heatmap, border = "white", legend = T, legend_breaks = c(0,
-                                                                          0.5, 1), treeheight_row = 20, treeheight_col = 20,
-             cluster_cols = F, cluster_rows = F, color = color)
-   if(save){
-     message('--Saving Plots--')
-     pdf('./heatmap.pdf',height = 10,width = 10)
-     pheatmap(use_heatmap,border = 'white',
-              legend = T,legend_breaks = c(0,0.5,1),
-              treeheight_row = 20,treeheight_col = 20,
-              cluster_cols = F,cluster_rows = F,
-              color = color)
-     dev.off()
-   }
+    colnames(use_heatmap) = select_query
+  }else {
+    colnames(use_heatmap) = select_query
+    rownames(use_heatmap) = select
   }
-  else{
-  pheatmap(use_heatmap,border = 'white',
-           legend = T,legend_breaks = c(0,0.5,1),
-           treeheight_row = 20,treeheight_col = 20,
-           cluster_cols = F,cluster_rows = F,
-           color = color)
-    if(save){
-      message('--Saving Plots--')
-      pdf('./heatmap.pdf',height = 10,width = 10)
-      pheatmap(use_heatmap,border = 'white',
-               legend = T,legend_breaks = c(0,0.5,1),
-               treeheight_row = 20,treeheight_col = 20,
-               cluster_cols = F,cluster_rows = F,
+  use_heatmap[use_heatmap < cutoff] = 0
+  if (use_shortname) {
+    rownames(use_heatmap) = colsplit(rownames(use_heatmap), 
+                                     "[|]", names = c("c1", "c2"))$c2
+    pheatmap(use_heatmap, border = "white", legend = T, legend_breaks = c(0, 
+                                                                          0.5, 1), treeheight_row = 20, treeheight_col = 20, 
+             cluster_cols = F, cluster_rows = F, color = color)
+    if (save) {
+      message("--Saving Plots--")
+      pdf("./heatmap.pdf", height = 10, width = 10)
+      pheatmap(use_heatmap, border = "white", legend = T, 
+               legend_breaks = c(0, 0.5, 1), treeheight_row = 20, 
+               treeheight_col = 20, cluster_cols = F, cluster_rows = F, 
                color = color)
       dev.off()
     }
+  }
+  else {
+    pheatmap(use_heatmap, border = "white", legend = T, legend_breaks = c(0, 
+                                                                          0.5, 1), treeheight_row = 20, treeheight_col = 20, 
+             cluster_cols = F, cluster_rows = F, color = color)
+    if (save) {
+      message("--Saving Plots--")
+      pdf("./heatmap.pdf", height = 10, width = 10)
+      pheatmap(use_heatmap, border = "white", legend = T, 
+               legend_breaks = c(0, 0.5, 1), treeheight_row = 20, 
+               treeheight_col = 20, cluster_cols = F, cluster_rows = F, 
+               color = color)
+      dev.off()
     }
+  }
 }
 
 #' Plot markers

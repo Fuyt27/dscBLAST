@@ -299,7 +299,7 @@ auc_calculate_withstage <- function(sce,pretrained_model,query_species,highlight
 
 #' Gene transfer
 #'
-#' @param expression_profile
+#' @param expression_matrix
 #' a gene expression matrix
 #' @param query_species
 #' Hs/Mm
@@ -307,28 +307,28 @@ auc_calculate_withstage <- function(sce,pretrained_model,query_species,highlight
 #' @export
 #'
 
-transfer_gene <- function(expression_profile,query_species){
+transfer_gene <- function(expression_matrix,query_species){
   if(query_species=='Hs'){
-    Mouse_gene <- gene_transfer[gene_transfer$Human_gene%in%rownames(expression_profile),]
+    Mouse_gene <- gene_transfer[gene_transfer$Human_gene%in%rownames(expression_matrix),]
     Mouse_gene<-Mouse_gene[!duplicated(Mouse_gene$Mouse_gene),]
     Mouse_gene<-Mouse_gene[!Mouse_gene$Mouse_gene=='',]
-    expression_profile <- expression_profile[Mouse_gene$Human_gene,]
-    rownames(expression_profile) <-Mouse_gene$Mouse_gene
-    return(expression_profile)
+    expression_matrix <- expression_matrix[Mouse_gene$Human_gene,]
+    rownames(expression_matrix) <-Mouse_gene$Mouse_gene
+    return(expression_matrix)
   }
   if(query_species=='Mm'){
-    Human_gene <- gene_transfer[gene_transfer$Mouse_gene%in%rownames(expression_profile),]
+    Human_gene <- gene_transfer[gene_transfer$Mouse_gene%in%rownames(expression_matrix),]
     Human_gene<-Human_gene[!duplicated(Human_gene$Human_gene),]
     Human_gene<-Human_gene[!Human_gene$Human_gene=='',]
-    expression_profile <- expression_profile[Human_gene$Mouse_gene,]
-    rownames(expression_profile) <-Human_gene$Human_gene
-    return(expression_profile)
+    expression_matrix <- expression_matrix[Human_gene$Mouse_gene,]
+    rownames(expression_matrix) <-Human_gene$Human_gene
+    return(expression_matrix)
   }
 }
 
 #' Cell qc
 #'
-#' @param expression_profile
+#' @param expression_matrix
 #' a gene-cell expression matrix
 #' @param query_species
 #' options: c('Hs','Mm')
@@ -344,11 +344,11 @@ transfer_gene <- function(expression_profile,query_species){
 #' @export
 #' @importFrom Seurat CreateSeuratObject PercentageFeatureSet
 
-Cell_qc<-function(expression_profile,query_species,metadata,cell_type,downsample) {
-  if (dim(expression_profile)[1]==0 ||dim(expression_profile)[2]==0) {
-    stop("`expression_profile`should be a gene-cell matrix")
+Cell_qc<-function(expression_matrix,query_species,metadata,cell_type,downsample) {
+  if (dim(expression_matrix)[1]==0 ||dim(expression_matrix)[2]==0) {
+    stop("`expression_matrix`should be a gene-cell matrix")
   }
-  seob=CreateSeuratObject(counts =expression_profile, min.cells = 3, min.features = 200)
+  seob=CreateSeuratObject(counts =expression_matrix, min.cells = 3, min.features = 200)
   seob$orig.ident='SeuratObject'
   seob@meta.data=metadata
   seob$cell_type=cell_type

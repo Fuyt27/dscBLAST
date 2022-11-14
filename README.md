@@ -16,7 +16,7 @@ wget https://github.com/Fuyt27/dscBLAST/archive/refs/tags/1.0.3.tar.gz
 
 ## **Install**
 ```R
-install.package('dscBLAST-1.0.2.tar.gz',repos=NULL,type='source')
+install.package('dscBLAST-1.0.3.tar.gz',repos=NULL,type='source')
 ```
 
 ## **Tutorial**

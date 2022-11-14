@@ -34,7 +34,6 @@
 Sanky_plot<- function(auc,top_n=3,color=c("#ffcc99","#66cccc"),use_shortname=T,save=T,cutoff=0.8,highlight=F,custom.row=NULL,custom.col=NULL) {
   if(highlight){auc=auc[['auc_highlight']] %>%as.matrix()
   }else{auc=auc[['auc_total']] %>%as.matrix()}
-  rownames(auc)=colsplit(rownames(auc),'_',names = c('c1','c2'))$c2
   env_corr_list <- melt(auc)
   env_corr_list<-env_corr_list[,c(2,1,3)]
   colnames(env_corr_list )<-c("query","ref","AUROC")
@@ -47,6 +46,7 @@ Sanky_plot<- function(auc,top_n=3,color=c("#ffcc99","#66cccc"),use_shortname=T,s
     edges1=edges1[sort(edges1$AUROC,decreasing = T,index.return=T)$ix[1:top_n],]
     edges <- rbind(edges,edges1)
   }
+  edges$ref=colsplit(edges$ref,'_',names = c('c1','c2'))$c2
   edges=edges[edges$AUROC>=cutoff,]
   
   #filter query and ref celltype
@@ -168,7 +168,6 @@ Network_plot<- function(auc,top_n=3,color=c("#ffcc99","#66cccc"),use_shortname=T
   require(igraph)
   if(highlight){auc=auc[['auc_highlight']] %>%as.matrix()}
   else{auc=auc[['auc_total']] %>%as.matrix()}
-  rownames(auc)=colsplit(rownames(auc),'_',names = c('c1','c2'))$c2
   env_corr_list <- melt(auc)
   env_corr_list<-env_corr_list[,c(2,1,3)]
   colnames(env_corr_list )<-c("query","ref","AUROC")
@@ -181,6 +180,7 @@ Network_plot<- function(auc,top_n=3,color=c("#ffcc99","#66cccc"),use_shortname=T
     edges1=edges1[sort(edges1$AUROC,decreasing = T,index.return=T)$ix[1:top_n],]
     edges <- rbind(edges,edges1)
   }
+  edges$ref=colsplit(edges$ref,'_',names = c('c1','c2'))$c2
   edges=edges[edges$AUROC>=cutoff,]
   
   #filter query and ref celltype
@@ -281,8 +281,6 @@ Heatmap_plot<- function(auc,top_n=3,use_shortname=T,color=colorRampPalette(brewe
   else {
     auc = auc[["auc_total"]] %>% as.matrix()
   }
-  # rownames(auc) = colsplit(rownames(auc), "_", names = c("c1", 
-  #                                                        "c2"))$c2
   env_corr_list <- melt(auc)
   env_corr_list <- env_corr_list[, c(2, 1, 3)]
   colnames(env_corr_list) <- c("query", "ref", "AUROC")
@@ -297,6 +295,7 @@ Heatmap_plot<- function(auc,top_n=3,use_shortname=T,color=colorRampPalette(brewe
     ]
     edges <- rbind(edges, edges1)
   }
+  edges$ref=colsplit(edges$ref,'_',names = c('c1','c2'))$c2
   edges = edges[edges$AUROC >= cutoff, ]
   edges$ref=colsplit(edges$ref,'_',names = c('c1','c2'))$c2
   if (!is.null(custom.row)) {

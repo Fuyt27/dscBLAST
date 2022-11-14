@@ -4,16 +4,16 @@
 \alias{transfer_gene}
 \title{transfer_gene}
 \usage{
-transfer_gene(expression_profile, query_species)
+  transfer_gene(expression_matrix, query_species)
 }
 \arguments{
-\item{expression_profile}{a gene-cell matrix}
-
-\item{query_species}{options: c('Hs','Mm')}
+  \item{expression_matrix}{a gene-cell matrix}
+  
+  \item{query_species}{options: c('Hs','Mm')}
 }
 \value{
-a transfered gene-cell matrix
+  a transfered gene-cell matrix
 }
 \description{
-transfer mouse gene to human gene or in turn
+  transfer mouse gene to human gene or in turn
 }

@@ -112,8 +112,8 @@ Heatmap_plot(auc,top_n = 3,cutoff = 0.8,use_shortname = T)
 Sanky_plot(auc_highlight,top_n = 3,cutoff = 0.8,highlight=T)
 
 #if you want to define the query and ref celltype in the auc result matrix, please set  `custom.row` and `custom.col`.
-custom.ref= c('Brain_Eze|central_intermediate progenitor cells','Organogenesis_Cao|Ependymal cell','NervousSystem_Zeisel|Chorid plexus epithelial cells','Organogenesis_Cao|Inhibitory neuron')
-custom.query=c('Query|Choroid plexus','Query|early neuron')
+custom.ref= c('Brain_Manno|Choroid plexus','Organogenesis_Cao|Ependymal cell','Eye_Han|Melanocyte','SKin_Reynolds|Melanocyte')
+custom.query=c('Query|Choroid plexus','Query|melanocyte')
 Sanky_plot(auc,custom.row = custom.ref,custom.col =custom.query,top_n = 3,cutoff = 0.8)
 ```
 
@@ -143,9 +143,14 @@ This function helps to check the cell stage of the highest correlated cell types
 auc_stage <- RUN_dscBLAST_stage(sce,auc,query_species = 'Hs',ref_dir = 'your_local_dir')
 
 #visualization
-Heatmap_plot(auc2)
-Network_plot(auc2)
-Sanky_plot(auc2)
+Heatmap_plot(auc_stage,top_n = 3,cutoff = 0.8,use_shortname = T)
+Network_plot(auc_stage,top_n = 3,cutoff = 0.8,use_shortname = T)
+Sanky_plot(auc_stage,top_n = 3,cutoff = 0.8,use_shortname = T)
+
+#if you want to define the query and ref celltype with specific timepoint in the auc result matrix, please set  `custom.row` and `custom.col`.
+custom.ref= c('Brain_Manno|Choroid plexus|E16.5','Brain_Manno|Choroid plexus|E17.5','SKin_Reynolds|Melanocyte|PCW7','SKin_Reynolds|Melanocyte|PCW9')
+custom.query=c('Query|Choroid plexus','Query|melanocyte')
+Heatmap_plot(auc_stage,custom.row = custom.ref,custom.col =custom.query,top_n = 3,cutoff = 0.8)
 ```
 
 ## Web-based interface

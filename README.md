@@ -14,6 +14,9 @@ click **[dscBLAST](https://github.com/Fuyt27/dscBLAST/archive/refs/tags/1.0.3.ta
 wget https://github.com/Fuyt27/dscBLAST/archive/refs/tags/1.0.3.tar.gz
 ```
 
+
+
+## **Install**
 #### Package loading
 Make sure the following packages are installed in your R-library before installing dscBLAST.
 ```R
@@ -32,7 +35,6 @@ library(dplyr)
 library(stringr)
 ```
 
-## **Install**
 ```R
 install.packages('dscBLAST-1.0.3.tar.gz',repos=NULL,type='source')
 ```

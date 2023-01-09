@@ -14,17 +14,8 @@ click **[dscBLAST](https://github.com/Fuyt27/dscBLAST/archive/refs/tags/1.0.3.ta
 wget https://github.com/Fuyt27/dscBLAST/archive/refs/tags/1.0.3.tar.gz
 ```
 
-## **Install**
-```R
-install.package('dscBLAST-1.0.3.tar.gz',repos=NULL,type='source')
-```
-
-## **Tutorial**
-
-For demonstration purpose, we took the dataset **[ectoderm](https://github.com/Fuyt27/dscBLAST/releases/download/1.0.3/ectoderm.rds)** as example.
-
 #### Package loading
-Make sure the following packages are installed in your R-library.
+Make sure the following packages are installed in your R-library before installing dscBLAST.
 ```R
 library(MetaNeighbor)
 library(Seurat)
@@ -40,6 +31,16 @@ library(reshape2)
 library(dplyr)
 library(stringr)
 ```
+
+## **Install**
+```R
+install.packages('dscBLAST-1.0.3.tar.gz',repos=NULL,type='source')
+```
+
+## **Tutorial**
+
+For demonstration purpose, we took the dataset **[ectoderm](https://github.com/Fuyt27/dscBLAST/releases/download/1.0.3/ectoderm.rds)** as example.
+
 
 #### Data processing
 
@@ -137,7 +138,7 @@ plotMarkers(sce,species = 'Hs',features = c('MLANA','TYRP1')) #Melanocyte marker
 
 
 #### Run dscBLAST with stage info
-This function helps to check the cell stage of the highest correlated cell types with your query cell. Make sure you have downloaded  **[ref.zip](https://github.com/Fuyt27/dscBLAST/releases/download/1.0.3/ref.zip)** , unzip and save it in your own local directory.
+This function helps to check the cell stage of the highest correlated cell types with your query cell. Make sure you have downloaded  **[ref.zip](https://github.com/Fuyt27/dscBLAST/releases/download/1.0.3/ref.zip)** , unzipped and saved it in your own local directory.
 ```R
 #run dscBLAST with stage info
 auc_stage <- RUN_dscBLAST_stage(sce,auc,query_species = 'Hs',ref_dir = 'your_local_dir')

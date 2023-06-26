@@ -1,6 +1,6 @@
 # README
 
-dscBLAST: developing single cell Basic Local Alignment Search Tool
+dscBLAST: developmental single cell Basic Local Alignment Search Tool
 
 We collected more than 160 datasets from approximately 50 articles. These data were grouped into five references: Ectoderm, Endoderm, Mesoderm, pre-organogenesis and extra-embryonic tissues. The correlation between query cells and reference cells is calculated using Metaneighbor. dscBLAST is particularly better at developing data, and it also performs very well on adult data.
 
@@ -137,24 +137,6 @@ marker_certain_dataset_celltype <- getMarkers(species ='Hs',reference ='ecto' ,r
 plotMarkers(sce,species = 'Hs',features = c('MLANA','TYRP1')) #Melanocyte markers
 ```
 
-
-
-#### Run dscBLAST with stage info
-This function helps to check the cell stage of the highest correlated cell types with your query cell. Make sure you have downloaded  **[ref.zip](https://github.com/Fuyt27/dscBLAST/releases/download/1.0.3/ref.zip)** , unzipped and saved it in your own local directory.
-```R
-#run dscBLAST with stage info
-auc_stage <- RUN_dscBLAST_stage(sce,auc,query_species = 'Hs',ref_dir = 'your_local_dir')
-
-#visualization
-Heatmap_plot(auc_stage,top_n = 3,cutoff = 0.8,use_shortname = T)
-Network_plot(auc_stage,top_n = 3,cutoff = 0.8,use_shortname = T)
-Sanky_plot(auc_stage,top_n = 3,cutoff = 0.8,use_shortname = T)
-
-#if you want to define the query and ref celltype with specific timepoint in the auc result matrix, please set  `custom.row` and `custom.col`.
-custom.ref= c('Brain_Manno|Choroid plexus|E16.5','Brain_Manno|Choroid plexus|E17.5','SKin_Reynolds|Melanocyte|PCW7','SKin_Reynolds|Melanocyte|PCW9')
-custom.query=c('Query|Choroid plexus','Query|melanocyte')
-Heatmap_plot(auc_stage,custom.row = custom.ref,custom.col =custom.query,top_n = 3,cutoff = 0.8)
-```
 
 ## Web-based interface
 For more details, please visit our website **[dscBLAST](http://bis.zju.edu.cn/dscblast/index.html)**.

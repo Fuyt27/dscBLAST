@@ -6,7 +6,7 @@ We collected more than 160 datasets from approximately 50 articles. These data w
 
 
 ## Workflow
-![](Figure/workflow.jpg)
+![](Figure/WORKFLOW.jpeg)
 
 ## **Download**
 click **[dscBLAST](https://github.com/Fuyt27/dscBLAST/archive/refs/tags/1.0.3.tar.gz)** or run this in the terminal:

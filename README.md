@@ -1,6 +1,6 @@
 # README
 
-dscBLAST: developmental single cell Basic Local Alignment Search Tool
+dscBLAST: developmental single-cell Basic Local Alignment Search Tool
 
 We collected more than 160 datasets from approximately 50 articles. These data were grouped into five references: Ectoderm, Endoderm, Mesoderm, pre-organogenesis and extra-embryonic tissues. The correlation between query cells and reference cells is calculated using Metaneighbor. dscBLAST is particularly better at developing data, and it also performs very well on adult data.
 
@@ -65,7 +65,7 @@ meta<-seob@meta.data #input metadata
 ##generally we run dscblast in both human and mouse datasets(recommanded!), if you prefer to run dscblast for one species, please set ref_species ='single'.
 ## if you want to normalize your data depending on batch, please set `batch` ='your_batchname', which is expected to be offered in the meta data. This parameter would be take into account only when `mtx.type` is set as 'raw'.
 ## if the expression_matrix offered is normalized in advance, please set `mtx.type` = 'normalized'.
-sce<-create_dscBLASTobject(expression_matrix = count,query_species= 'Hs',metadata = meta,cell_type=meta$cell_type,downsample = 20000,batch ='default',mtx.type = 'raw',ref_species ='both')
+sce<-create_dscBLASTobject(expression_matrix = count,query_species= 'Hs',metadata = meta,cell_type=meta$cell_type,downsample = 50000,batch ='default',mtx.type = 'raw',ref_species ='both')
 ```
 
 
@@ -91,7 +91,10 @@ auc_result <- auc[['auc_total']]
 #get highlight auc 
 auc_highlight_result <- auc_highlight[['auc_highlight']]
 
-#save auc results in txt format(recommended)
+#save auc (recommended)
+save(auc_result,file='./auc.rda')
+
+#save auc results in txt format
 library(data.table)
 fwrite(auc_result,file = './auc_result.txt',quote = F,row.names = T,col.names = T,sep = '\t')
 fwrite(auc_result,file = './auc_highlight.txt',quote = F,row.names = T,col.names = T,sep = '\t')

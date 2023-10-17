@@ -141,7 +141,7 @@ plotMarkers(sce,species = 'Hs',features = c('MLANA','TYRP1')) #Melanocyte marker
 ```
 
 
-## Web-based interface
+## Website
 For more details, please visit our website **[dscBLAST](http://bis.zju.edu.cn/dscblast/index.html)**.
 
 

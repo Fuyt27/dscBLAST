@@ -146,7 +146,7 @@ For more details, please visit our website **[dscBLAST](http://bis.zju.edu.cn/ds
 
 
 ## Citation
-
+**[Daiyuan Liu et al., Characterization of human pluripotent stem cell differentiation by single-cell dual-omics analyses. Stem Cell Reports. 2023.](https://www.sciencedirect.com/science/article/pii/S2213671123004198?via%3Dihub)**.
 
 ## Contact
 daiyuanliu@zju.edu.cn

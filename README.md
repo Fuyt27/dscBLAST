@@ -1,4 +1,4 @@
-# README
+![image](https://github.com/Fuyt27/dscBLAST/assets/156401267/ad257144-5b15-42a6-b78c-8aa967c3f100)# README
 
 dscBLAST: developmental single-cell Basic Local Alignment Search Tool
 
@@ -146,6 +146,7 @@ For more details, please visit our website **[dscBLAST](http://bis.zju.edu.cn/ds
 
 
 ## Citation
+**[Daiyuan Liu et al., Characterization of human pluripotent stem cell differentiation by single-cell dual-omics analyses. Stem Cell Reports. 2023.](https://www.sciencedirect.com/science/article/pii/S2213671123004198?via%3Dihub)**
 
 
 ## Contact
